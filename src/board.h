@@ -24,7 +24,7 @@ typedef struct {
     int solutionLength;
 } Board;
 
-int totalCheck =0;
+extern int totalCheck;
 void initBoard(Board *board);
 void printBoard(const Board *board);
 

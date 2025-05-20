@@ -4,6 +4,8 @@
 #include <string.h>
 #define RESET_COLOR "\x1b[0m"
 
+int totalCheck = 0;
+
 void initBoard(Board *board) {
     board->rows = 0;
     board->cols = 0;

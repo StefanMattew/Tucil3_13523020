@@ -13,12 +13,6 @@
 #include <stdbool.h>
 #include "time.h"
 
-#include "piece.c"
-#include "board.c"
-#include "pathfinder.c"
-#include "priorityqueue.c"
-#include "utils.c"
-#include "hashset.c"
 
 int main() {
     char filename[256];
