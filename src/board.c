@@ -101,6 +101,17 @@ void printBoard(const Board *board) {
             printf("\n");
         }
     }
+    if (board->exit_row !=-1){
+        for (int j = 0; j < board->cols; j++) {
+            if (board->exit_col != j){
+                printf("  ");
+            }
+            if (board->exit_col ==j){
+                printf("%sK%s", "\x1b[38;5;11m", RESET_COLOR);
+            }
+        }
+        printf("\n");
+    }
     
    
 }
