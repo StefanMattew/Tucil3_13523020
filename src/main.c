@@ -123,28 +123,4 @@ int main() {
     freeBoard(&initialBoard);
     return 0;
 
-    // printBoard(board);
-    // printf("piece count: %d\n", board->numPieces);
-    // printf("Primary piece ID: %c\n", board->primaryPieceID);
-    // printf("Primary piece index: %d\n", board->primaryIndex);
-    // printf("Board dimensions: %d x %d\n", board->rows, board->cols);
-    // printf("Pieces on the board:\n");
-    // for (int i = 0; i < board->numPieces; i++) {
-    //     Piece *piece = &board->pieces[i];
-    //     printf("Piece ID: %c, Row: %d, Col: %d, Size: %d, Orientation: %c\n",
-    //            piece->id, piece->row, piece->col, piece->size, piece->orientation);
-    // }
-    // printf("Exit position: (%d, %d)\n", board->exit_row, board->exit_col);
-
-    // Example of moving a piece
-    // movePiece(board, 'P', 'D', 1); // Move piece 'P' down by 1 step
-
-    // if (isSolved(board)) {
-    //     printf("Puzzle solved!\n");
-    // } else {
-    //     printf("Puzzle not solved yet.\n");
-    // }
-
-    // freeBoard(board);
-    // return 0;
 }

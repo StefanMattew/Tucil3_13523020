@@ -52,12 +52,4 @@ Node* uniformCostSearch(Board initialBoard);
 Node* aStarSearch(Board initialBoard, int heuristicChoice);
 
 
-// int countBlockingPieces(Board* board);
-
-// Board* solveUCS (Board* start);
-
-
-
-
-
 #endif
