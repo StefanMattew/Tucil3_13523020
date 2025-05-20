@@ -134,73 +134,95 @@ int findPieceIndex(const Board *board, char pieceId) {
   }
   return -1; // Not found
 }
-
 bool canMove(const Board *board, const Piece *piece, char direction, int steps) {
     if (!board || !piece) return false; // Safety check
 
-    int newRow = piece->row;
-    int newCol = piece->col;
+    totalCheck++; 
 
-    totalCheck++;
-    // Tentukan posisi baru berdasarkan orientasi dan arah
+    
+    int originalRow = piece->row;
+    int originalCol = piece->col;
+    int newRow = originalRow;
+    int newCol = originalCol;
+
     if (piece->orientation == 'H') {
         if (direction == 'L') newCol -= steps;
         else if (direction == 'R') newCol += steps;
-        else return false; // Arah tidak valid untuk horizontal
+        else return false;
     } else if (piece->orientation == 'V') {
         if (direction == 'U') newRow -= steps;
         else if (direction == 'D') newRow += steps;
-        else return false; // Arah tidak valid untuk vertikal
+        else return false;
     } else {
-        return false; // Orientasi tidak valid
+        return false;
     }
 
-    // Periksa jika seluruh bagian piece masih dalam batas papan
     if (piece->orientation == 'H') {
-        // Memastikan seluruh panjang piece horizontal masih dalam batas
         if (newCol < 0 || newCol + piece->size > board->cols) {
-            return false; // Pergerakan keluar batas papan
+            return false;
         }
     } else if (piece->orientation == 'V') {
-        // Memastikan seluruh panjang piece vertikal masih dalam batas
         if (newRow < 0 || newRow + piece->size > board->rows) {
-            return false; // Pergerakan keluar batas papan
+            return false;
         }
     }
 
-    // Cek tabrakan dengan piece lain
-    for (int i = 0; i < board->numPieces; i++) {
-        if (board->pieces[i].id == piece->id) continue; // Skip piece itu sendiri
+   
 
-        int otherRow = board->pieces[i].row;
-        int otherCol = board->pieces[i].col;
-        int otherSize = board->pieces[i].size;
-        char otherOrientation = board->pieces[i].orientation;
+    for (int s = 1; s <= steps; s++) { // Mulai dari langkah 1 hingga 'steps'
+        int intermediateRow = originalRow;
+        int intermediateCol = originalCol;
 
-        // Periksa semua cell yang akan ditempati oleh piece yang sedang bergerak
-        for (int s = 0; s < piece->size; s++) {
-            int checkRow = piece->row;
-            int checkCol = piece->col;
-            if (piece->orientation == 'H') checkCol = newCol + s; // Horizontal, periksa semua kolom
-            else checkRow = newRow + s; // Vertical, periksa semua baris
+        if (piece->orientation == 'H') {
+            if (direction == 'L') intermediateCol -= s;
+            else if (direction == 'R') intermediateCol += s;
+        } else { // V
+            if (direction == 'U') intermediateRow -= s;
+            else if (direction == 'D') intermediateRow += s;
+        }
 
-            // Periksa tabrakan dengan piece lain
-            for (int os = 0; os < otherSize; os++) {
-                int otherCheckRow = otherRow;
-                int otherCheckCol = otherCol;
 
-                if (otherOrientation == 'H') otherCheckCol = otherCol + os; // Horizontal
-                else otherCheckRow = otherRow + os; // Vertical
+        for (int p_part = 0; p_part < piece->size; p_part++) {
+            int checkPartRow = intermediateRow;
+            int checkPartCol = intermediateCol;
 
-                // Jika posisi baru piece bertabrakan dengan piece lain, return false
-                if (checkRow == otherCheckRow && checkCol == otherCheckCol) {
-                    return false; // Collision
+            if (piece->orientation == 'H') {
+                checkPartCol += p_part;
+            } else { // V
+                checkPartRow += p_part;
+            }
+
+            // Periksa tabrakan dengan setiap piece lain di papan
+            for (int i = 0; i < board->numPieces; i++) {
+                // Abaikan piece yang sedang bergerak itu sendiri
+                if (board->pieces[i].id == piece->id) continue;
+
+                int otherRow = board->pieces[i].row;
+                int otherCol = board->pieces[i].col;
+                int otherSize = board->pieces[i].size;
+                char otherOrientation = board->pieces[i].orientation;
+
+                // Periksa setiap sel yang ditempati oleh piece lain
+                for (int other_part = 0; other_part < otherSize; other_part++) {
+                    int otherCheckPartRow = otherRow;
+                    int otherCheckPartCol = otherCol;
+
+                    if (otherOrientation == 'H') {
+                        otherCheckPartCol += other_part;
+                    } else { // V
+                        otherCheckPartRow += other_part;
+                    }
+
+                    
+                    if (checkPartRow == otherCheckPartRow && checkPartCol == otherCheckPartCol) {
+                        return false; // Tabrakan terdeteksi
+                    }
                 }
             }
         }
     }
 
-    return true; // Valid move
+    return true; // Tidak ada tabrakan terdeteksi selama pergerakan
 }
 
 

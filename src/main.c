@@ -118,6 +118,7 @@ int main() {
     
     } else {
         printf("Solusi tidak ditemukan.\n");
+        printf("Jumlah gerakan yang diperiksa %d\n", totalCheck);
         printf("Banyaknya gerakan: 0\n");
     }
 
