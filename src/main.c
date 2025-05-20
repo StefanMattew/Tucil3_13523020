@@ -46,13 +46,14 @@ int main() {
     printf("3. A* Search\n");
     scanf("%d", &algorithmChoice);
 
-    if (algorithmChoice == 1 || algorithmChoice == 3) {
-        printf("Choose a heuristic:\n");
-        printf("1. Manhattan Distance to Exit\n");
-        printf("2. Number of Blocking Pieces\n");
-        scanf("%d", &heuristicChoice);
-    }
+    // if (algorithmChoice == 1 || algorithmChoice == 3) {
+    //     printf("Choose a heuristic:\n");
+    //     printf("1. Manhattan Distance to Exit\n");
+    //     printf("2. Number of Blocking Pieces\n");
+    //     scanf("%d", &heuristicChoice);
+    // }
 
+    heuristicChoice = 1; // Default to Manhattan Distance to Exit
     clock_t t1, t2;
     t1 = clock();
     printf("==========================\n");
