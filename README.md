@@ -32,5 +32,6 @@
   + Jalankan perintah "./bin/main" pada terminal
   
 -  Author / identitas pembuat
-    Stefan Mattew Susanto         
-    13523020
+
+  * Stefan Mattew Susanto
+  * 13523020
