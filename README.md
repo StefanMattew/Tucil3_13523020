@@ -4,11 +4,14 @@
   Program ini adalah implementasi penyelesaian puzzle Rush Hour menggunakan algoritma pencarian pathfinding. Tujuannya adalah untuk menemukan urutan pergerakan kendaraan seminimal mungkin agar mobil utama ('P') dapat keluar dari papan permainan ('K').
   Dalam permainan ini terdapat 3 opsi dalam algoritma yang digunakan, yakni
   + Greedy Best First Search (GBFS)
+    Greedy Best First Search adalah algoritma pathfinding yang memilih jalur yang diperkirakan memiliki cost terendah untuk mencapai target/goal. Algotima ini menggunakan nilai dari fungsi heuristik (h) terkecil sebagai cara untuk pemilihan jalur. Algoritma ini tidak mempertimbangkan cost yang digunakan dari start ke node n. Sehingga fungsi GBFS didefinisikan sebagai f(n) = h(n).
     
   + Uniform Cost Search (UCS)
- 
-  + A Star (A*)
+    UCS adalah algoritma pathfinding yang menggunakan cost dari start sebagai dasar untuk eksplorasi. Algoritma ini menghitung cost akumulatif terkecil dari start node ke node n untuk selanjutnya dapat memilih jalur yang paling efisien. Algoritma UCS dilambangkan sebagai g(n). UCS tidak menggunakan fungsi heuristic dalam pemilihan jalur. Sehingga fungsi UCS didefinisikan sebagai f(n) = g(n).
     
+  + A Star (A*)
+    Algoritma A star/ A* adalah algoritma patfinding yang menggabungkan GBFS dan UCS untuk mendapatkan jalur dengan cost terkecil. A* membutuhkan fungsi g dan fungsi h sehingga fungsi A* adalah f(n) = g(n) + h(n). A* akan mencari jalur yang mempertimbangkan cost dari start node ke node n dan mempertimbangkan fungsi heuristik dengan aspek jarak yang perlu ditempuh ke goal node.
+
 
 
 - Requirement program dan instalasi tertentu bila ada.
@@ -29,5 +32,5 @@
   + Jalankan perintah "./bin/main" pada terminal
   
 -  Author / identitas pembuat
-  * Stefan Mattew Susanto
-  *  13523020
+    Stefan Mattew Susanto         
+    13523020
